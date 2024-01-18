@@ -1,0 +1,15 @@
+<!-- Taskapproval_app/templates/Taskapproval_app/task_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.name }} - {{ task.status }} - {% if task.user %}{{ task.user.username }}{% else %}Unassigned{% endif %}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

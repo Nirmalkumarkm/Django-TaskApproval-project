@@ -1,0 +1,63 @@
+<!-- Taskapproval_app/templates/Taskapproval_app/task_report.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .completed {
+            background-color: #d4edda;
+        }
+
+        .on-progress {
+            background-color: #fff3cd;
+        }
+
+        .unassigned {
+            background-color: #f8d7da;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Report</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr class="{% if task.status == 'Completed' %}completed{% elif task.status == 'On Progress' %}on-progress{% else %}unassigned{% endif %}">
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.department.name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>
+                        {% if task.user %}
+                            {{ task.user.username }}
+                        {% else %}
+                            Unassigned
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
